@@ -1,10 +1,10 @@
-FROM node:18 AS build
+FROM node:17-alpine AS build
 
 WORKDIR /usr/src/app
 
 # install dependencies to build balena-cli via npm
 # hadolint ignore=DL3018
-RUN apk add --no-cache build-base ca-certificates curl git python3 wget linux-headers
+RUN apk add --no-cache build-base ca-certificates curl git python3 wget linux-headers eudev-dev
 
 ENV NODE_ENV production
 
@@ -13,7 +13,7 @@ COPY package.json package-lock.json ./
 # install balena-cli via npm
 RUN npm install
 
-FROM node:18-alpine AS balena-cli
+FROM node:17-alpine AS balena-cli
 
 WORKDIR /usr/src/app
 
