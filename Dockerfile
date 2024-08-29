@@ -1,4 +1,4 @@
-FROM node:17-alpine AS build
+FROM node:20-alpine AS build
 
 WORKDIR /usr/src/app
 
@@ -13,7 +13,7 @@ COPY package.json package-lock.json ./
 # install balena-cli via npm
 RUN npm install
 
-FROM node:17-alpine AS balena-cli
+FROM node:20-alpine AS balena-cli
 
 WORKDIR /usr/src/app
 
